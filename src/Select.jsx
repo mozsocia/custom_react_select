@@ -14,15 +14,22 @@ const Select = ({ options, placeholder, onChange }) => {
         setInputValue(selectedOption ? selectedOption.label : '');
       }
     };
+
+    const handleWindowBlur = () => {
+      setIsOpen(false);
+    };
+
     document.addEventListener('mousedown', handleClickOutside);
+    window.addEventListener('blur', handleWindowBlur);
+
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      window.removeEventListener('blur', handleWindowBlur);
     };
   }, [selectedOption]);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
-    // Remove this block to keep the selected value visible
     if (!isOpen) {
       setInputValue('');
     } else {
