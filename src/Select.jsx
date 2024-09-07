@@ -55,14 +55,32 @@ const Select = ({ options, placeholder, onChange }) => {
 
   return (
     <div className="custom-select" ref={dropdownRef}>
-      <input
-        type="text"
-        className="select-input"
-        value={inputValue}
-        onChange={handleInputChange}
-        onClick={toggleDropdown}
-        placeholder={selectedOption ? selectedOption.label : placeholder}
-      />
+      <div className="select-wrapper">
+        <input
+          type="text"
+          className="select-input"
+          value={inputValue}
+          onChange={handleInputChange}
+          onClick={toggleDropdown}
+          placeholder={selectedOption ? selectedOption.label : placeholder}
+        />
+        <svg
+          className={`select-arrow ${isOpen ? 'open' : ''}`}
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M6 9L12 15L18 9"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </div>
       {isOpen && (
         <div className="select-dropdown">
           {filteredOptions.map((option) => (

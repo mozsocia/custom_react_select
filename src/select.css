@@ -3,14 +3,18 @@
   width: 100%;
 }
 
+.select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
 .select-input {
   width: 100%;
   padding: 10px;
+  padding-right: 30px; /* Make room for the arrow */
   border: 1px solid #ccc;
   cursor: pointer;
   box-sizing: border-box;
-  position: relative;
-  z-index: 2; /* Ensure input is above the dropdown */
 }
 
 .select-input:focus {
@@ -19,16 +23,29 @@
   border-color: #4a90e2;
 }
 
+.select-arrow {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: transform 0.2s ease-in-out;
+}
+
+.select-arrow.open {
+  transform: translateY(-50%) rotate(180deg);
+}
+
 .select-dropdown {
   position: absolute;
-  top: calc(100% + 3px); /* Add a small gap */
+  top: calc(100% + 3px);
   left: 0;
   right: 0;
   border: 1px solid #ccc;
   max-height: 200px;
   overflow-y: auto;
   background-color: white;
-  z-index: 1; /* Ensure dropdown is below the input */
+  z-index: 1;
 }
 
 .select-option {
