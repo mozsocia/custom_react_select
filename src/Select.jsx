@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import './Select.css'; // Make sure to create this CSS file
+import './Select.css';
 
 const Select = ({ options, placeholder, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,7 +14,6 @@ const Select = ({ options, placeholder, onChange }) => {
         setInputValue(selectedOption ? selectedOption.label : '');
       }
     };
-
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
@@ -23,6 +22,7 @@ const Select = ({ options, placeholder, onChange }) => {
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
+    // Remove this block to keep the selected value visible
     if (!isOpen) {
       setInputValue('');
     } else {
@@ -54,7 +54,7 @@ const Select = ({ options, placeholder, onChange }) => {
         value={inputValue}
         onChange={handleInputChange}
         onClick={toggleDropdown}
-        placeholder={placeholder}
+        placeholder={selectedOption ? selectedOption.label : placeholder}
       />
       {isOpen && (
         <div className="select-dropdown">
